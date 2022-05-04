@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import "./SignUp.css"
-import {SERVER_URL} from "../../config"
-import axios from 'axios'
+import AuthService from '../../service/AuthService'
 
 function SignUpPage() {
   const [Name, setName] = useState("")
@@ -35,23 +34,14 @@ function SignUpPage() {
         return
     } 
 
-    let data = {
-        username : Name,
-        password : Password,
-        email : Email
-    }
-
-    axios.post(SERVER_URL + '/user/signup', data)
-     .then((Response)=>{
-        console.log(Response.data)
-        if(Response) {
-          alert('회원가입 완료!')
-          window.location.reload()
-        }
-      }) 
-     .catch((Error)=>{
-       console.log(Error)
-      })
+    AuthService.signup(Name, Password, Email)
+    .then((response) => {
+      alert('회원가입 완료!')
+      window.location.reload()
+    })
+    .catch((Error)=>{
+      console.log(Error)
+    })
   }
 
   return (
