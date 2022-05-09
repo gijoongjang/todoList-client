@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/" element = {<LandingPage/>} />
           <Route exact path="/signin" element = {<Login/>} />
           <Route exact path="/signup" element = {<SignUpPage/>} />
-          <Route exact path="/add" render={(props) => (<AddTodo {...props} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />)} />
+          <Route exact path="/add" element={<AddTodo isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
         </Routes>
       </div>
     </div>
