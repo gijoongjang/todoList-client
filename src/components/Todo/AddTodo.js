@@ -5,9 +5,7 @@ import { SERVER_URL } from '../../config';
 
 function AddTodo({isAuthenticated, setIsAuthenticated}) {
   const [title, setTitle] = useState('');
-  const [targetDate, setTargetDate] = useState('');
-  const [message, setMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [createdDate, setTargetDate] = useState('');
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -19,46 +17,24 @@ function AddTodo({isAuthenticated, setIsAuthenticated}) {
 	const onSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await axios.post(SERVER_URL + '/todo/addTodo', {title, targetDate}, {
+    await axios.post(SERVER_URL + '/todo/addTodo', {title, createdDate}, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
         }
-      })
-    } catch(error){
-      setMessage('');
-      setErrorMessage('오류 발생!!');
-      return;
-    }
-    
-    setTitle('');
-    setTargetDate('');
-    setErrorMessage('');
-    setMessage('Todo 만들기 성공!');
+    }).then((response) => {
+        console.log(response)
+        alert('TODO 리스트 추가 완료!')
+        setTitle('');
+        setTargetDate('');
+        navigate('/')   //TODO 투두리스트로 수정할것
+    }).catch((error) => {
+        alert('오류 발생!')
+        console.log(error)
+    })
   }
 
   useEffect(() => {
-    setMessage('')
-  }, [title, targetDate])
-
-  const showMessage = () => {
-    if(message === ''){
-      return <div></div>
-    }
-    return <div className="alert alert-success" role="alert">
-      {message}
-    </div> 
-  }
-
-  const showErrorMessage = () => {
-    if(errorMessage === ''){
-      return <div></div>
-    }
-
-    return <div className="alert alert-danger" role="alert">
-      {errorMessage}
-    </div>
-  }
+  }, [title, createdDate])
 
 	return (
 		<div className="container">
@@ -77,7 +53,7 @@ function AddTodo({isAuthenticated, setIsAuthenticated}) {
         <div className="form-group">
           <label>등록일</label>
           <input 
-            value={targetDate} 
+            value={createdDate} 
             type="date" 
             onChange={e => setTargetDate(e.target.value)} 
             className="form-control">
@@ -85,8 +61,6 @@ function AddTodo({isAuthenticated, setIsAuthenticated}) {
         </div>
         <button className="btn btn-primary">TODO 추가</button>
       </form>
-      {showMessage()}
-      {showErrorMessage()}
     </div>
 	)
 }
