@@ -12,6 +12,7 @@ function Header({isAuthenticated, setIsAuthenticated}) {
                     <li className="nav-link px-4"><Link to='/'>Home</Link></li>
                     {isAuthenticated && <li className="nav-link px-4"><Link to='/todo'>View Todo</Link></li>}
                     {isAuthenticated && <li className="nav-link px-4"><Link to='/add'>Add Todo</Link></li>}
+                    {isAuthenticated && <li className="nav-link px-4"><Link to='/logout'>logout</Link></li>}
                     {!isAuthenticated && <li className="nav-link px-4"><Link to='/signin'>Signin</Link></li>}
                     {!isAuthenticated && <li className="nav-link px-4"><Link to='/signup'>Signup</Link></li>}
                 </ul>

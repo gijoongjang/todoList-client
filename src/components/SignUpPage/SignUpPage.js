@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import "./SignUp.css"
 import AuthService from '../../service/AuthService'
+import { useNavigate } from 'react-router-dom';
 
 function SignUpPage() {
+  let navigate = useNavigate()
   const [Name, setName] = useState("")
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("")
@@ -37,7 +39,7 @@ function SignUpPage() {
     AuthService.signup(Name, Password, Email)
     .then((response) => {
       alert('회원가입 완료!')
-      window.location.reload()
+      navigate("/")
     })
     .catch((Error)=>{
       console.log(Error)

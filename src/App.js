@@ -10,6 +10,7 @@ import Login from "./components/LoginPage/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
 import AddTodo from "./components/Todo/AddTodo";
+import Logout from "./components/LoginPage/LogoutPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/" element = {<LandingPage/>} />
           <Route exact path="/signin" element = {<Login/>} />
           <Route exact path="/signup" element = {<SignUpPage/>} />
+          <Route exact path="/logout" element = {<Logout/>} />
           <Route exact path="/add" element={<AddTodo isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
         </Routes>
       </div>
