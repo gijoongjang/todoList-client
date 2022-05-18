@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+// import './index.css';
 import reportWebVitals from './reportWebVitals';
+// import AppRouter from './AppRouter';
+import App from './App';
 
 const rootNode = document.getElementById('root');
 
 ReactDOM.createRoot(rootNode).render(
   <React.Fragment>
-    <App />
+    <App/>
+    {/* <AppRouter/> */}
   </React.Fragment>,
 );
 

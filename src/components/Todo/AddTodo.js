@@ -10,7 +10,7 @@ function AddTodo({isAuthenticated, setIsAuthenticated}) {
 
   useEffect(() => {
 		if(!isAuthenticated){
-			navigate.push("/");
+			navigate("/");
 		}
 	}, [isAuthenticated, navigate])
 
