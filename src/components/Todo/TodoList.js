@@ -66,6 +66,20 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
       }).catch((error) => console.log(error))
   }
 
+  function updateTodo(id, title) {
+    axios.put(SERVER_URL + `/todo/update/${id}`, {title}, {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
+      }
+    }).then((response) => {
+      console.log(response)
+      let array = []
+      array.push(response.data)
+      setTodo(array)
+      alert('수정완료!')
+    }).catch((error) => console.log(error))
+  }
+
   const todoList = todo.map(todo => 
     <Todo
       id={todo.id}
@@ -73,6 +87,7 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
       completed={todo.completed}
       key={todo.id}
       toggleTodoCompleted={toggleTodoCompleted}
+      updateTodo={updateTodo}
     />
   );
 
