@@ -66,6 +66,20 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
       }).catch((error) => console.log(error))
   }
 
+  function addTodo(title) {
+    axios.post(SERVER_URL + '/todo/addTodo', {title}, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
+      }
+    }).then((response) => {
+        setTodo(response.data)
+        alert('TODO 리스트 추가 완료!')
+    }).catch((error) => {
+        alert('추가중 오류 발생!')
+        console.log(error)
+    })
+  }
+
   function updateTodo(id, title) {
     axios.put(SERVER_URL + `/todo/update/${id}`, {title}, {
       headers: {
@@ -125,7 +139,7 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
  
   return (
     <div className="todoapp stack-large">
-      <Form/>
+      <Form addTodo = {addTodo}/>
       <div className="filters btn-group stack-exception">
         {filterList}
       </div>
