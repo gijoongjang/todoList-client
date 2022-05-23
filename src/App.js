@@ -9,7 +9,6 @@ import SignUpPage from "./components/SignUpPage/SignUpPage";
 import Login from "./components/LoginPage/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
-import AddTodo from "./components/Todo/AddTodo";
 import Logout from "./components/LoginPage/LogoutPage";
 import TodoList from "./components/Todo/TodoList";
 
@@ -33,7 +32,6 @@ function App() {
           <Route exact path="/signup" element = {<SignUpPage/>} />
           <Route exact path="/logout" element = {<Logout/>} />
           <Route exact path="/todoList" element={<TodoList isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
-          <Route exact path="/add" element={<AddTodo isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
         </Routes>
       </div>
     </div>
