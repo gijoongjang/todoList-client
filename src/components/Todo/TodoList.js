@@ -80,6 +80,16 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
     }).catch((error) => console.log(error))
   }
 
+  function deleteTodo(id) {
+    axios.delete(SERVER_URL + `/todo/delete/${id}`, {
+      headers: {
+          'Authorization': `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
+      }
+    }).then((response) => {
+      setTodo(response.data)
+    }).catch((error) => console.log(error))
+  }
+
   const todoList = todo.map(todo => 
     <Todo
       id={todo.id}
@@ -87,6 +97,7 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
       completed={todo.completed}
       key={todo.id}
       toggleTodoCompleted={toggleTodoCompleted}
+      deleteTodo={deleteTodo}
       updateTodo={updateTodo}
     />
   );
