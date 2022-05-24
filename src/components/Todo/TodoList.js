@@ -125,7 +125,7 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
     />
   );
 
-  const todoNoun = todoList.length !== 1 ? 'todos' : 'todo';
+  const todoNoun = todoList.length !== 1 && todoList.length !== 0 ? 'todos' : 'todo';
   const headingText = `${todoList.length} ${todoNoun} 남아있음`;
 
   const listHeadingRef = useRef(null);

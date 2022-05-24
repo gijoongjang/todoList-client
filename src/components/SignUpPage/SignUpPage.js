@@ -39,7 +39,7 @@ function SignUpPage() {
     AuthService.signup(Name, Password, Email)
     .then((response) => {
       alert('회원가입 완료!')
-      navigate("/")
+      navigate("/signin")
     })
     .catch((Error)=>{
       console.log(Error)

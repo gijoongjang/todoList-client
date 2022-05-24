@@ -93,7 +93,7 @@ body {
 }
 .btn__primary {
   color: #fff;
-  background-color: #000;
+  background-color: rgb(0, 76, 190);
 }
 .btn-group {
   display: flex;

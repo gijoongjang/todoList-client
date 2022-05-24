@@ -48,8 +48,8 @@ const Login = () => {
     if (checkBtn.current.context._errors.length === 0) {
         AuthService.signin(username, password).then(
           () => {
-            navigate("/");
-            window.location.reload();
+            navigate('/')
+            window.location.reload()
           },
           (error) => {
             const resMessage =
