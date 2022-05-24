@@ -67,7 +67,8 @@ function TodoList({isAuthenticated, setIsAuthenticated}) {
   }
 
   function addTodo(title) {
-    axios.post(SERVER_URL + '/todo/addTodo', {title}, {
+    let createdDate = new Date().toISOString().split('T')[0]
+    axios.post(SERVER_URL + '/todo/addTodo', {title, createdDate}, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('AUTH_TOKEN')}`,
       }
